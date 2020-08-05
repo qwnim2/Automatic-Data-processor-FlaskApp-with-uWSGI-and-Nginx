@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>長片七日內銷售</h2>
+    <h3>Select the file you want to extract:  </h3>
+    <p>NOTE: File should come from <a href="https://mixpanel.com/s/XKjbb" target="_blank">HERE</a>.</p>
+    <form method="post" action={{ url_for('seven') }} enctype="multipart/form-data">
+        <p><input type="file" name="input_file" /></p>
+        <p><input type="submit" value="Process the file" /></p>
+        <p><a href="/">Back</a></p>
+    </form>
+</body>
+</html>
