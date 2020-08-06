@@ -66,7 +66,7 @@ def CPchat_difference(input_data):
                     if user == receiver2 and swagger == sender2:
                         if cp2user/user2cp < 1:
                             ratio = round(cp2user/user2cp, 2)
-                            alert_info.append([swagger, user, cp2user, user2cp, ratio, diamond])
+                            alert_info.append([swagger, user, str(cp2user), str(user2cp), str(ratio), str(diamond)])
                             
     result = 'CP,User,CP_to_User,User_to_CP,Ratio,Diamond\n'
     for line in alert_info:
