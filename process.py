@@ -44,7 +44,7 @@ def CPchat_difference(input_data):
     file = pd.read_csv(input_data)
 
     EVENT, RECEIVER, SENDER, AMOUNT = file.columns   
-    date = date_parser(AMOUNT) 
+    date = date_parser(AMOUNT).date()
     df_group = file.groupby(EVENT)
     types = list(df_group.groups.keys())
 
