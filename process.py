@@ -1,9 +1,8 @@
 import dateutil
 import pandas as pd
+date_parser = dateutil.parser.parse
 
 def flix_week_consumption(input_data):
-
-    date_parser = dateutil.parser.parse
 
     file = pd.read_csv(input_data)
 
@@ -44,7 +43,8 @@ def CPchat_difference(input_data):
 
     file = pd.read_csv(input_data)
 
-    EVENT, RECEIVER, SENDER, AMOUNT = file.columns    
+    EVENT, RECEIVER, SENDER, AMOUNT = file.columns   
+    date = date_parser(AMOUNT) 
     df_group = file.groupby(EVENT)
     types = list(df_group.groups.keys())
 
@@ -73,4 +73,4 @@ def CPchat_difference(input_data):
         result += ','.join(line)
         result += '\n'
         
-    return result
+    return result, date
