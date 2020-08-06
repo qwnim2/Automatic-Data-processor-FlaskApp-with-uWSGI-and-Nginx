@@ -38,7 +38,7 @@ def flix_week_consumption(input_data):
     for Id in info.keys():
         result += ','.join([Id, info[Id][0], info[Id][1],info[Id][2], str(info[Id][3])])
         result +='\n'       # CSV format
-    return result
+    return result, min_date, max_date
 
 def CPchat_difference(input_data):
 

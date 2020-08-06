@@ -14,9 +14,9 @@ def seven():
     if request.method == "POST":
         input_data = request.files["input_file"]
         #input_data = input_file.stream.read().decode("utf-8")
-        output_data = flix_week_consumption(input_data)
+        output_data, min_date, max_date = flix_week_consumption(input_data)
         response = make_response(output_data)
-        response.headers["Content-Disposition"] = "attachment; filename=result.csv"
+        response.headers["Content-Disposition"] = f"attachment; filename=Flix_week_consumption_{min_date}~{max_date}.csv"
         return response
 
     return render_template('seven.html')
