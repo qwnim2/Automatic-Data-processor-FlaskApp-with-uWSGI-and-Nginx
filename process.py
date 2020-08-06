@@ -9,22 +9,22 @@ def flix_week_consumption(input_data):
     info={}
     min_date = date_parser("2120/1/1").date()
     max_date = date_parser("1970/1/1").date()
-    Event, Message_id, Premiere, Caption, Username, Diamond = file.columns
+    Event, MESSAGE_ID, PREMIERE, CAPTION, USERNAME, DIAMOND = file.columns
 
-    debut_df = file[file[Diamond] ==1 ]
-    for Id, Title, Date in zip(debut_df[Message_id], debut_df[Caption], debut_df[Premiere]):
+    debut_df = file[file[DIAMOND] ==1 ]
+    for Id, Title, Date in zip(debut_df[MESSAGE_ID], debut_df[CAPTION], debut_df[PREMIERE]):
         Title = Title[:Title.find('\n')]
         if date_parser(Date).date() < min_date:
             min_date = date_parser(Date).date()
         elif date_parser(Date).date() > max_date:
             max_date = date_parser(Date).date()
-        info[Id] = [Title, "",Date, 0]  # {id:[Title, CP, Date, Diamond_consumption]}
+        info[Id] = [Title, "",Date, 0]  # {id:[Title, CP, Date, DIAMOND_consumption]}
 
-    consumption_df = file[file[Diamond] !=1 ]
-    for Id, Swagger, Date, Revenue in zip(consumption_df[Message_id],
-                                          consumption_df[Username],
-                                          consumption_df[Premiere],
-                                          consumption_df[Diamond]):
+    consumption_df = file[file[DIAMOND] !=1 ]
+    for Id, Swagger, Date, Revenue in zip(consumption_df[MESSAGE_ID],
+                                          consumption_df[USERNAME],
+                                          consumption_df[PREMIERE],
+                                          consumption_df[DIAMOND]):
         if Id in info.keys():
             Date = date_parser(Date).date()
             Debut = date_parser(info[Id][2]).date()
