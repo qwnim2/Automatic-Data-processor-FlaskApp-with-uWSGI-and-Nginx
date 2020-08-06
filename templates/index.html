@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tommy Swag</title>
-</head>
-<body>
-    <a href="/seven"> 長片七日內銷售量</a> <br>
-    <a href="/CPchat">Swagger聊天則數差距</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content%}
+
+    <h3>Select your action: </h3>
+    <a href="/seven"> 長片七日內銷售量</a> <br><br>
+    <a href="/CPchat_alert">Swagger聊天則數差距</a>
+
+{% endblock%}

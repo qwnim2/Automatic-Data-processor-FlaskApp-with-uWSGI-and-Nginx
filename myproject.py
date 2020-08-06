@@ -1,4 +1,5 @@
-from flask import Flask, make_response, request, render_template
+from flask import Flask, make_response, request
+from flask import redirect, render_template, url_for
 from process import *
 
 app = Flask(__name__)
@@ -13,35 +14,35 @@ def seven():
     if request.method == "POST":
         input_data = request.files["input_file"]
         #input_data = input_file.stream.read().decode("utf-8")
-        output_data = process_data(input_data)
+        output_data = flix_week_consumption(input_data)
         response = make_response(output_data)
         response.headers["Content-Disposition"] = "attachment; filename=result.csv"
         return response
 
     return render_template('seven.html')
 
-@app.route("/CPchat", methods=["GET", "POST"])
-def CPchat():
+@app.route("/CPchat_alert", methods=["GET", "POST"])
+def CPchat_alert():   #TODO
     if request.method == "POST":
         input_data = request.files["input_file"]
-        output_data = process_data(input_data)  #TODO
+        output_data = CPchat_difference(input_data)  #TODO
         response = make_response(output_data)   
-        #TODO response.headers["Content-Disposition"] = "attachment; filename=result.csv"
+        response.headers["Content-Disposition"] = "attachment; filename=result.csv"
         return response
 
-    return render_template('CPchat.html')
+    return render_template('CPchat_alert.html')
 
-@app.route('/login', methods=['GET', 'POST']) 
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    #  利用request取得使用者端傳來的方法為何
     if request.method == 'POST':
-                          #  利用request取得表單欄位值
-        return 'Hello ' + request.values['username']
-    
-    #  非POST的時候就會回傳一個空白的模板
+        return redirect(url_for('hello', username=request.form.get('username')))
+
     return render_template('login.html')
 
-           
+@app.route('/hello/<username>')
+def hello(username):
+    return render_template('hello.html', username=username)
+     
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0')
