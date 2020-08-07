@@ -3,12 +3,6 @@
 {% block content %}
 
 <section>
-    <!---->
-    
-    <!---->
-    <!--Overlay-->
-    
-    <!--Container-->
     <br><br><br><br>
     <div class="container" >
         <div class="row justify-content-center">
@@ -25,7 +19,7 @@
             <div class="card col-12 col-md-6 p-3">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="static/images/select_date.png" alt="select date">
+                        <img src="static/images/seven/select_date.png" alt="select date">
                     </div>
                     <div class="card-box">
                         <h4 class="align-center pb-3 mbr-fonts-style display-6">
@@ -41,7 +35,7 @@
             <div class="card col-12 col-md-6 p-3 last-child">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="static/images/download_csv_botton.png" alt="csv botton">
+                        <img src="static/images/seven/csv_botton.png" alt="csv botton">
                     </div>
                     <div class="card-box">
                         <h4 class="align-center pb-3 mbr-fonts-style display-6">
@@ -60,12 +54,12 @@
             
         </div>
         <form method="post" action={{ url_for('seven') }} enctype="multipart/form-data">
+            <h6>Then upload the file you just got :D</h6>
             <p><input type="file" name="input_file" /></p>
             <p><input type="submit" value="Process the file" /></p>
             <p><a href="/">Back</a>
             </p>
         </form>
-
         <br>
     </div>
 </section>
