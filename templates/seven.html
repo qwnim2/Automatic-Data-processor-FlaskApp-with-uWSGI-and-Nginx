@@ -1,22 +1,67 @@
 {% extends "base.html" %}
 {% block title %}Flix Week Consumption{% endblock %}
 {% block content %}
+<section class="services1 cid-s6XEaUNgpk" id="services1-2">
+    <!---->
+    
+    <!---->
+    <!--Overlay-->
+    
+    <!--Container-->
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--Titles-->
+            <div class="title pb-5 col-12">
+                <h2 class="align-left pb-3 mbr-fonts-style display-1">
+                    Our Shop
+                </h2>
+                
+            </div>
+            <!--Card-1-->
+            <div class="card col-12 col-md-6 p-3">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="static/images/select_date.png" alt="select date">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="card-title mbr-fonts-style display-5">
+                            Watch Star
+                        </h4>
+                        
+                        <!--Btn-->
+                        
+                    </div>
+                </div>
+            </div>
+            <!--Card-2-->
+            <div class="card col-12 col-md-6 p-3 last-child">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="static/images/download_csv_botton.png" alt="csv botton">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="card-title mbr-fonts-style display-5">
+                            Watch Special
+                        </h4>
+                        
+                        <!--Btn-->
+                        
+                    </div>
+                </div>
+            </div>
+            <!--Card-3-->
+            
+            <!--Card-4-->
+            
+        </div>
+    </div>
 
-<section class="features13 cid-s6SjlvIagD" id="features13-8">
-    <h2>Flix week consumption</h2>
-        <p><a href="https://mixpanel.com/s/XKjbb" target="_blank">File Source</a> 
-        Click the Download CSV on Mixpanel web page<br><br>
-        As following: <br>
-        Select the date range:<br>
-        <img src="https://i.imgur.com/zCQi7Hx.png" alt="select date image" width=30% height="30%"><br><br>
-        Download csv on mixpanel: <br>
-        <img src="https://i.imgur.com/WPRNyJ2.png" alt="download csv image" width=15% height="15%"><br>
-        </p>
-        <h3>Select the file you want to extract:  </h3>
     <form method="post" action={{ url_for('seven') }} enctype="multipart/form-data">
         <p><input type="file" name="input_file" /></p>
         <p><input type="submit" value="Process the file" /></p>
-        <p><a href="/">Back</a></p>
+        <p><a href="/">Back</a>
+        </p>
     </form>
 </section>
 {% endblock %}
