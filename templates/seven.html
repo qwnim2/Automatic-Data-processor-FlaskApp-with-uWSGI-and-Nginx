@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Flix Week Consumption{% endblock %}
 {% block content %}
-<section class="services1 cid-s6XEaUNgpk" id="services1-2">
+
+<section>
     <!---->
     
     <!---->
     <!--Overlay-->
     
     <!--Container-->
-    
-    <div class="container">
+    <br><br><br><br>
+    <div class="container" >
         <div class="row justify-content-center">
             <!--Titles-->
-            <div class="title pb-5 col-12">
-                <h2 class="align-left pb-3 mbr-fonts-style display-1">
-                    Our Shop
+            <div class="title pb-1 col-12">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Flix week consumption</h2>
+                    <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                        <a href="https://mixpanel.com/s/XKjbb" target="_blank">File Source</a> </h4>
                 </h2>
                 
             </div>
@@ -25,8 +28,8 @@
                         <img src="static/images/select_date.png" alt="select date">
                     </div>
                     <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-5">
-                            Watch Star
+                        <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                            Select date you want
                         </h4>
                         
                         <!--Btn-->
@@ -41,8 +44,9 @@
                         <img src="static/images/download_csv_botton.png" alt="csv botton">
                     </div>
                     <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-5">
-                            Watch Special
+                        <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                            Press "Download CSV"
+                            <br>should wait for 3~5 min.
                         </h4>
                         
                         <!--Btn-->
@@ -55,13 +59,14 @@
             <!--Card-4-->
             
         </div>
-    </div>
+        <form method="post" action={{ url_for('seven') }} enctype="multipart/form-data">
+            <p><input type="file" name="input_file" /></p>
+            <p><input type="submit" value="Process the file" /></p>
+            <p><a href="/">Back</a>
+            </p>
+        </form>
 
-    <form method="post" action={{ url_for('seven') }} enctype="multipart/form-data">
-        <p><input type="file" name="input_file" /></p>
-        <p><input type="submit" value="Process the file" /></p>
-        <p><a href="/">Back</a>
-        </p>
-    </form>
+        <br>
+    </div>
 </section>
 {% endblock %}
