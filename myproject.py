@@ -44,6 +44,10 @@ def login():
 def hello():
     return render_template('hello.html')
 
+@app.route('/report')
+def report():
+    return render_template('report.html')
+
 @app.route('/stream_diamond_diff')
 def stream_diamond_diff():
     return render_template('diamond_diff_stream_debut.html')
