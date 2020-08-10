@@ -43,7 +43,11 @@ def login():
 @app.route('/hello')
 def hello():
     return render_template('hello.html')
-     
+
+@app.route('/stream_diamond_diff')
+def stream_diamond_diff():
+    return render_template('diamond_diff_stream_debut.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0')
