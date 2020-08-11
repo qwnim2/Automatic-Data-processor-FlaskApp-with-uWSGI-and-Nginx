@@ -14,6 +14,7 @@ def flix_week_consumption(input_data):
     debut_df = file[file[DIAMOND] ==1 ]
     for Id, Title, Date in zip(debut_df[MESSAGE_ID], debut_df[CAPTION], debut_df[PREMIERE]):
         Title = Title[:Title.find('\n')]
+        Title.replace(","," ")
         if date_parser(Date).date() < min_date:
             min_date = date_parser(Date).date()
         elif date_parser(Date).date() > max_date:
