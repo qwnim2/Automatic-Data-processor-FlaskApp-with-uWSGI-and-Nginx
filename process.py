@@ -1,7 +1,6 @@
 import dateutil
 import pandas as pd
 from io import BytesIO
-from flask import Flask, send_file
 date_parser = dateutil.parser.parse
 
 def flix_week_consumption(input_data):
