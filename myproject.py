@@ -41,7 +41,7 @@ def dating_list():
         # response = make_response(output_data)   
         # response.headers["Content-Disposition"] = f"attachment; filename={date}甜蜜約會.csv" 
         # return response
-        return send_file(output, attachment_filename=f"{date}.xlsx", as_attachment=True)
+        return send_file(output, attachment_filename=f"{date}甜蜜約會.xlsx", as_attachment=True)
 
 
     return render_template('Dating_List.html')
