@@ -1,5 +1,7 @@
 import dateutil
 import pandas as pd
+from io import BytesIO
+from flask import Flask, send_file
 date_parser = dateutil.parser.parse
 
 def flix_week_consumption(input_data):
@@ -75,3 +77,46 @@ def CPchat_difference(input_data):
         result += '\n'
         
     return result, date
+
+def Dating_list(input_data):
+
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    dating_df = pd.read_csv(input_data)
+
+    EVENT, CP, USER, TICKET, AMOUNT = dating_df.columns
+    TOTAL = 'TOTAL LOTS'
+    ORDER = 'ORDER'
+
+    DATE1 = (dateutil.parser.parse(AMOUNT[:AMOUNT.find('-')]).date())
+    DATE2 = (dateutil.parser.parse(AMOUNT[AMOUNT.find('-'):]).date())
+    date = str(DATE1.month)+'/'+ str(DATE1.day)+'-'+str(DATE2.month)+'/'+ str(DATE2.day)
+    print(date)
+    dating_df = dating_df.drop([EVENT], axis=1)
+    groups = dating_df.groupby(CP)
+
+    for group in groups:
+        new_df = dating_df.loc[dating_df[CP]==group[0]]
+        new_df['USER_censor'] = new_df[USER].map(lambda x: x[:2]+"*"*(len(x)-2) if len(x)<6  else x[:2]+"****"+x[6:])
+        new_df[TICKET] = new_df[TICKET].map(lambda x: int(x[x.find('-')+1:]))
+        new_df[TOTAL] = new_df[TICKET] * new_df[AMOUNT]
+        # new_df[ORDER] = new_df[TOTAL].map(lambda x: f'{count} - {x+count}')
+        count = 0
+        cumrange = []
+        for total in new_df[TOTAL]:
+            if total == 1:
+                cumrange.append(f'{count+1}')
+                count+=total
+            else:
+                cumrange.append(f'{count+1} - {count+total}')
+                count+=total
+                
+        new_df[ORDER] = cumrange
+        new_df = new_df[[CP,USER,'USER_censor',TOTAL,ORDER]]
+        new_df.set_index(CP, inplace=True)
+        new_df.index.names = ['主播']
+        new_df.columns = ['用戶','SWAG ID', '籤數', '抽獎序號']
+        new_df.to_excel(writer, sheet_name=group[0])
+    writer.close()
+    output.seek(0)
+    return output, date

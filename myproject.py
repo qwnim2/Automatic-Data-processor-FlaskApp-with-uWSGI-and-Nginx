@@ -23,15 +23,28 @@ def seven():
     return render_template('seven.html')
 
 @app.route("/CPchat_alert", methods=["GET", "POST"])
-def CPchat_alert():   #TODO
+def CPchat_alert():   
     if request.method == "POST":
         input_data = request.files["input_file"]
-        output_data, date = CPchat_difference(input_data)  #TODO
+        output_data, date = CPchat_difference(input_data)  
         response = make_response(output_data)   
         response.headers["Content-Disposition"] = f"attachment; filename=Chat_alert_{date}.csv"
         return response
 
     return render_template('CPchat_alert.html')
+
+@app.route('/Dating_List', methods=["GET", "POST"])
+def dating_list():
+    if request.method == "POST":
+        input_data = request.files["input_file"]
+        output, date = Dating_list(input_data)  
+        # response = make_response(output_data)   
+        # response.headers["Content-Disposition"] = f"attachment; filename={date}甜蜜約會.csv" 
+        # return response
+        return send_file(output, attachment_filename=f"{date}.xlsx", as_attachment=True)
+
+
+    return render_template('Dating_List.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,6 +64,10 @@ def report():
 @app.route('/stream_diamond_diff')
 def stream_diamond_diff():
     return render_template('diamond_diff_stream_debut.html')
+
+@app.route('/flix_keywords')
+def flix_keywords():
+    return render_template('flix_keywords.html')
 
 if __name__ == "__main__":
     app.debug = True
