@@ -46,6 +46,18 @@ def dating_list():
 
     return render_template('Dating_List.html')
 
+@app.route('/CPonline_List', methods=["GET", "POST"])
+def CPonline_List():
+    if request.method == "POST":
+        input_data = request.files["input_file"]
+        output = CPonline_List_func(input_data)  
+        # response = make_response(output_data)   
+        # response.headers["Content-Disposition"] = f"attachment; filename={date}甜蜜約會.csv" 
+        # return response
+        return send_file(output, attachment_filename=f"CP在線數量監測.xlsx", as_attachment=True)
+
+    return render_template('CPonline_List.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

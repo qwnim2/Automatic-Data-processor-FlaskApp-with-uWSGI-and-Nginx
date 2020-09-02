@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section-table cid-s6SiZEFJcE" id="table1-6">
+    
+    <div class="container" >
+        <div class="row justify-content-center">
+            <!--Titles-->
+            <div class="title pb-1 col-12">
+                <h2 class="align-center pb-3 mbr-fonts-style display-1">
+                    CP online monitor</h2>
+                    <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                        CP在線數量監測</h4>
+                    <h4 class="align-center pb-3 mbr-fonts-style display-10">
+                        <a href="https://mixpanel.com/s/27ezDe" target="_blank">File Source 資料來源</a> </h4>
+                </h2>
+                
+            </div>
+            <!--Card-1-->
+            <div class="card col-12 col-md-6 p-3">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="static/images/seven/select_date.png" alt="select date">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                            <br>1. Select the date you want
+                        </h4>
+                        
+                        <!--Btn-->
+                        
+                    </div>
+                </div>
+            </div>
+            <!--Card-2-->
+            <div class="card col-12 col-md-6 p-3 last-child">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="static/images/seven/download_csv.png" alt="csv botton">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="align-center pb-3 mbr-fonts-style display-6">
+                            <br>2. Press "Download CSV",
+                            <br> shoud no need to wait.
+                        </h4>
+                        
+                        <!--Btn-->
+                        
+                    </div>
+                </div>
+            </div>
+            <!--Card-3-->
+            
+            <!--Card-4-->
+            
+        </div>
+        
+        <form method="post" action={{ url_for('CPonline_List') }} enctype="multipart/form-data">
+            <h6>Then upload the file you just got :D</h6>
+            <p><input type="file" name="input_file" /></p>
+            <p><input type="submit" value="Process the file" /></p>
+            <p><a href="/">Back</a>
+            </p>
+        </form>
+        <br>
+    </div>
+</section>
+{% endblock %}

@@ -119,3 +119,51 @@ def Dating_list(input_data):
     writer.close()
     output.seek(0)
     return output, date
+
+def CPonline_List_func(input_data):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df = pd.read_csv(input_data)
+
+    if len(df.columns) == 3:
+        df["Hour"] = df["Date"].map(lambda x: int(dateutil.parser.parse(x).strftime("%H")))
+        EVENT, DATE, AMOUNT, HOUR = df.columns
+        df[DATE] = df[DATE].map(lambda x: dateutil.parser.parse(x).strftime("%m-%d"))
+        
+        index = list(df.groupby(DATE).groups.keys())
+        new_df = pd.DataFrame(index=index)
+
+        for hour in range(24):
+            hour_df = list(df[df[HOUR]==hour][AMOUNT])
+            while len(hour_df)!=len(new_df):
+                hour_df.append(0)
+            new_df[str(hour)] = hour_df
+
+    elif len(df.columns) == 4:
+        df["Hour"] = df["Date"].map(lambda x: int(dateutil.parser.parse(x).strftime("%H")))
+        EVENT, DATE, USER, AMOUNT, HOUR = df.columns
+        df[DATE] = df[DATE].map(lambda x: dateutil.parser.parse(x).strftime("%m-%d"))
+        
+        groupby = df.groupby(DATE)
+        index = list(groupby.groups.keys())
+
+        new_df = pd.DataFrame()
+        print(new_df)
+        for i in index:
+            date_df = df[df[DATE]==i]
+            hour_df = pd.DataFrame(date_df[date_df[HOUR]==0][USER]).reset_index(drop=True)
+            hour_df.columns = [str(0)]
+            concat_df = pd.DataFrame(hour_df)
+                
+            for hour in range(1,24):
+                hour_df = pd.DataFrame(date_df[date_df[HOUR]==hour][USER]).reset_index(drop=True)
+                hour_df.columns = [str(hour)]
+                concat_df = pd.concat([concat_df, hour_df], axis=1,)
+                
+            concat_df.index = [i]*len(concat_df)
+            new_df = pd.concat([new_df, concat_df])
+
+    new_df.to_excel(writer)
+    writer.close()
+    output.seek(0)
+    return output
