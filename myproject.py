@@ -69,17 +69,18 @@ def login():
 def hello():
     return render_template('hello.html')
 
+# REPORT part
 @app.route('/report')
 def report():
     return render_template('report.html')
 
-@app.route('/stream_diamond_diff')
-def stream_diamond_diff():
+@app.route('/stream_diamond_diff_report')
+def stream_diamond_diff_report():
     return render_template('diamond_diff_stream_debut.html')
 
-@app.route('/flix_keywords')
-def flix_keywords():
-    return render_template('flix_keywords.html')
+@app.route('/flix_wordcloud_report')
+def flix_worldcloud_report():
+    return render_template('Flix_WordCloud.html')
 
 if __name__ == "__main__":
     app.debug = True
